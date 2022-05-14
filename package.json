@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "moment": "^2.29.3",
+    "sql.js": "^1.6.2"
+  }
+}

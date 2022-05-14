@@ -2,3 +2,12 @@
 *.css.map
 *.sass.map
 *.scss.map
+node_modules
+css/scss/*
+npm
+icons
+js/idb.min.js
+js/note.js
+js/sql.db
+js/sql-wasm.js
+js/main.js

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>noteapp</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css">
+</head>
+
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="container__header">
+                        <span class="title">Notes</span>
+                        <button class="btn btn-search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M9 2C5.1458514 2 2 5.1458514 2 9C2 12.854149 5.1458514 16 9 16C10.747998 16 12.345009 15.348024 13.574219 14.28125L14 14.707031L14 16L20 22L22 20L16 14L14.707031 14L14.28125 13.574219C15.348024 12.345009 16 10.747998 16 9C16 5.1458514 12.854149 2 9 2 z M 9 4C11.773268 4 14 6.2267316 14 9C14 11.773268 11.773268 14 9 14C6.2267316 14 4 11.773268 4 9C4 6.2267316 6.2267316 4 9 4 z" fill="#FFFFFF" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="container__note">
+
+                    </div>
+                    <button class="btn btn-add">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M11 3L11 11L3 11L3 13L11 13L11 21L13 21L13 13L21 13L21 11L13 11L13 3L11 3 z" fill="#FFFFFF" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="container">
+                    <div class="container__header">
+                        <button class="btn btn-back">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M13 5.9296875L6.9296875 12L13 18.070312L14.5 16.570312L9.9296875 12L14.5 7.4296875L13 5.9296875 z" fill="#FFFFFF" />
+                            </svg>
+                        </button>
+                        <button class="btn btn-save" mode-action="add-note">
+                            Enregistrer
+                        </button>
+                    </div>
+                    <div class="memo__note">
+                        <input type="text" name="" id="" class="note-title" placeholder="Titre de la note">
+                        <textarea name="" id="memo" cols="30" rows="10" placeholder="Tapez quelque chose"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/swiper-bundle.min.js"></script>
+    <script src="./js/moment.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>
