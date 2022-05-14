@@ -1,2 +1,2 @@
 # note-app-web
-Application des prises des notes utilisant le javascript &amp; le SQlite3 pour la sauvegarde.
+Application des prises des notes utilisant le javascript &amp; indexdeDB pour la sauvegarde.
