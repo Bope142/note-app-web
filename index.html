@@ -15,12 +15,14 @@
             <div class="swiper-slide">
                 <div class="container">
                     <div class="container__header">
-                        <span class="title">Notes</span>
+                        <span class="title">Mes Notes</span>
+<!--
                         <button class="btn btn-search">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M9 2C5.1458514 2 2 5.1458514 2 9C2 12.854149 5.1458514 16 9 16C10.747998 16 12.345009 15.348024 13.574219 14.28125L14 14.707031L14 16L20 22L22 20L16 14L14.707031 14L14.28125 13.574219C15.348024 12.345009 16 10.747998 16 9C16 5.1458514 12.854149 2 9 2 z M 9 4C11.773268 4 14 6.2267316 14 9C14 11.773268 11.773268 14 9 14C6.2267316 14 4 11.773268 4 9C4 6.2267316 6.2267316 4 9 4 z" fill="#FFFFFF" />
                             </svg>
                         </button>
+-->
                     </div>
                     <div class="container__note">
 
@@ -40,9 +42,19 @@
                                 <path d="M13 5.9296875L6.9296875 12L13 18.070312L14.5 16.570312L9.9296875 12L14.5 7.4296875L13 5.9296875 z" fill="#FFFFFF" />
                             </svg>
                         </button>
-                        <button class="btn btn-save" mode-action="add-note">
-                            Enregistrer
-                        </button>
+                        <div class="control-note">
+                            <button class="btn btn-delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M6.496094 1C5.675781 1 5 1.675781 5 2.496094L5 3L2 3L2 4L3 4L3 12.5C3 13.324219 3.675781 14 4.5 14L10.5 14C11.324219 14 12 13.324219 12 12.5L12 4L13 4L13 3L10 3L10 2.496094C10 1.675781 9.324219 1 8.503906 1 Z M 6.496094 2L8.503906 2C8.785156 2 9 2.214844 9 2.496094L9 3L6 3L6 2.496094C6 2.214844 6.214844 2 6.496094 2 Z M 4 4L11 4L11 12.5C11 12.78125 10.78125 13 10.5 13L4.5 13C4.21875 13 4 12.78125 4 12.5 Z M 5 5L5 12L6 12L6 5 Z M 7 5L7 12L8 12L8 5 Z M 9 5L9 12L10 12L10 5Z" fill="#FFFFFF" />
+                                </svg>
+                            </button>
+                            <button class="btn btn-save" mode-action="add-note">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                    <path d="M14.5 2.792969L5.5 11.792969L1.851563 8.148438L1.5 7.792969L0.792969 8.5L1.148438 8.851563L5.5 13.207031L15.207031 3.5Z" fill="#FFFFFF" />
+                                </svg>
+                            </button>
+                        </div>
+
                     </div>
                     <div class="memo__note">
                         <input type="text" name="" id="" class="note-title" placeholder="Titre de la note">

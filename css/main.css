@@ -427,6 +427,15 @@ body {
   color: #fff;
   font-size: 2rem;
 }
+.container__header .control-note {
+  display: flex;
+  column-gap: 20px;
+  overflow: hidden;
+}
+
+.btn-hide {
+  display: none !important;
+}
 
 .btn {
   flex: none;
@@ -434,14 +443,14 @@ body {
   align-items: center;
   justify-content: center;
   background: #3b3b3b;
-  padding: 10px;
+  padding: 8px;
   border-radius: 10px;
   color: #fff;
   font-family: "RobotoCondensed-Regular", sans-serif;
 }
 .btn svg {
-  height: 2rem;
-  width: 2rem;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 .btn svg * {
   fill: #fff;
@@ -555,6 +564,7 @@ body {
   -ms-overflow-style: none;
   overflow: -moz-scrollbars-none;
   font-family: "RobotoCondensed-Light";
+  resize: none;
 }
 .memo__note #memo::-webkit-scrollbar {
   display: none;

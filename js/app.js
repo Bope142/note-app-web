@@ -1,5 +1,7 @@
 let ModeApp = ''
 
+let indexNote = 0
+
 let db = null
 
 let config = {
@@ -22,7 +24,6 @@ const IDB = (function init() {
     })
     DBOpenReq.addEventListener('success', (e) => {
         db = e.target.result
-        console.log('Success ', db)
         listUInote()
     })
     DBOpenReq.addEventListener('upgradeneeded', (e) => {
@@ -36,6 +37,38 @@ const IDB = (function init() {
     })
 })()
 
+const deleteNote = (id) => {
+    let tx = db.transaction('noteStore', 'readwrite');
+    let Store = tx.objectStore('noteStore');
+    let deleteRequest = Store.delete(parseInt(id));
+    deleteRequest.onsuccess = (e) => {
+        listUInote()
+    }
+
+    deleteRequest.onerror = (e) => {
+        console.log('error on delete note !!')
+    }
+}
+
+
+const updateNote = (id) => {
+    let note = {
+        id: parseInt(id),
+        title: document.querySelector('.note-title').value,
+        content: document.querySelector('#memo').value,
+        created: moment().format('LLLL')
+    }
+    let tx = db.transaction('noteStore', 'readwrite');
+    let store = tx.objectStore('noteStore')
+    let requestAdd = store.put(note)
+    requestAdd.onsuccess = (e) => {
+        listUInote()
+        document.querySelector('.btn-delete').classList.remove('btn-hide')
+    }
+    requestAdd.onerror = (err) => {
+        console.warn(err)
+    }
+}
 
 moment.locale('fr', {
     months: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
@@ -100,17 +133,20 @@ const EventNote = () => {
             if (e.path[1].classList.contains('note')) {
                 document.querySelector('.note-title').value = e.path[1].getAttribute('note-title')
                 document.querySelector('#memo').value = e.path[1].getAttribute('content-note')
+                indexNote = e.path[1].getAttribute('note-id')
             } else {
                 document.querySelector('.note-title').value = e.path[0].getAttribute('note-title')
                 document.querySelector('#memo').value = e.path[0].getAttribute('content-note')
+                indexNote = e.path[0].getAttribute('note-id')
             }
-            document.querySelector('.btn-save').innerHTML = 'Enregistrer'
             ModeApp = "read-mode"
+            document.querySelector('.btn-delete').classList.remove('btn-hide')
             swiperContainer.slideNext();
 
         })
     })
 }
+
 const listUInote = () => {
     let tx = db.transaction('noteStore', 'readonly');
     let recordNote = tx.objectStore('noteStore');
@@ -118,7 +154,6 @@ const listUInote = () => {
     getRequest.onsuccess = (e) => {
         document.querySelector('.container__note')
             .innerHTML = '';
-        console.log(e.target.result.reverse())
         e.target.result.reverse().forEach(data => {
             document.querySelector('.container__note')
                 .innerHTML += `
@@ -155,17 +190,14 @@ async function addNote() {
             created: moment().format('LLLL')
         }
         let tx = db.transaction('noteStore', 'readwrite');
-        tx.oncomplete = (e) => {
-            console.log(e)
-        }
         tx.onerror = (err) => {
             console.warn(err)
         }
         let store = tx.objectStore('noteStore')
         let requestAdd = store.add(note)
         requestAdd.onsuccess = (e) => {
-            console.log('note créer avec succès !! ', e)
             listUInote()
+            document.querySelector('.btn-delete').classList.remove('btn-hide')
         }
         requestAdd.onerror = (err) => {
             console.warn(err)
@@ -179,23 +211,35 @@ const sliderMenu = () => {
     let btnprev = document.querySelector(".btn-back"),
         btnnext = document.querySelector(".btn-add")
     btnprev.addEventListener('click', () => {
+        if (document.querySelector('.note-title').value !== '' && document.querySelector('#memo').value !== '') {
+            if (ModeApp === "append-note") {
+                addNote()
+            } else {
+                updateNote(indexNote)
+            }
+
+        }
         swiperContainer.slidePrev();
     })
     btnnext.addEventListener('click', () => {
         document.querySelector('.note-title').value = ''
         document.querySelector('#memo').value = ''
-        document.querySelector('.btn-save').innerHTML = 'Enregistrer'
         ModeApp = "append-note"
+        document.querySelector('.btn-delete').classList.add('btn-hide')
         swiperContainer.slideNext();
     })
     document.querySelector('.btn-save')
         .addEventListener('click', () => {
             if (ModeApp === "append-note") {
-                addNote()
+                if (document.querySelector('.note-title').value !== '' || document.querySelector('#memo').value !== '') {
+                    addNote()
+                }
+
                 swiperContainer.slidePrev();
             } else {
+                updateNote(indexNote)
+                swiperContainer.slidePrev();
 
-                //updateNote(document.querySelector('.note-title').value, document.querySelector('#memo').value)
             }
         })
 }
@@ -223,5 +267,12 @@ const SetColorBg = () => {
 
 window.addEventListener('load', () => {
     sliderMenu()
+    document.querySelector('.btn-delete').addEventListener('click', () => {
+        deleteNote(indexNote)
+        swiperContainer.slidePrev();
+        indexNote = 0
+        document.querySelector('.btn-delete').classList.remove('btn-hide')
+    })
+
 
 })
